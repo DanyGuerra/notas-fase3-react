@@ -1,0 +1,24 @@
+.layout{
+  display: flex;
+  flex-direction: column;
+  min-width: 100vh;
+}
+
+.header{
+  border: 1px blue;
+}
+
+main{
+  flex:1;
+  padding: 20px;
+}
+
+footer {
+  border: 1px solid red;
+}
+
+body{
+  padding: 0;
+  margin: 0;
+}
+
