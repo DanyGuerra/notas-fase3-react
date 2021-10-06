@@ -15,12 +15,13 @@ const StoreItem = ({item, children})=>{
   )
 }
 
-const ItemList = ({items, children})=>{
+const ItemList = ({items})=>{
   return(
     <>
       {items.map(anItem => (
       <StoreItem item = {anItem}>
           <button> Buy </button>
+          <h3>Children</h3>
        </StoreItem>
       ))}
     </>
