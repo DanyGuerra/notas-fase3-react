@@ -1,8 +1,14 @@
 const ElHeader = ({MyNiceColor}) => (
-  <header classname='header-wrapper' style={{backgroundColor:MyNiceColor, padding: 10}}>
+  <header className='header-wrapper' style={{
+      backgroundColor: MyNiceColor,
+      padding: 10,
+      display: "flex",
+      justifyContent: "center"
+    }
+  }>
 
    {""}
-   mi awesome apps
+   Este es el Header
    {""}
   </header>
 )

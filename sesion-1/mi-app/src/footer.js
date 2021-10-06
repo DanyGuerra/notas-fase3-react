@@ -1,13 +1,12 @@
 const Footer = (props) => (
   <footer style={{
-      backgroundColor: "#DDD",
+      backgroundColor: "#C51B1B",
       display: "flex",
-      justifycontent: "center",
+      justifyContent: "center",
       padding: 10,
     }
   }>
-    trademark Bedu {props.year}
-
+    Trademark Bedu {props.year}
   </footer>
 )
 

@@ -1,12 +1,13 @@
 import "./styles.css"
 import Footer from './footer';
 import Header from './header';
+import Content from './content'
 
 function App(){
   return (
-    <div classname="layout">
-      <Header MyNiceColor="gray"/>
-      <main> My page Shop</main>
+    <div className="layout">
+      <Header MyNiceColor="coral"/>
+      <Content/>
       <Footer year="2022"/>
     </div>
   );
