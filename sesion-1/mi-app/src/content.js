@@ -15,12 +15,16 @@ const StoreItem = ({item, children})=>{
   )
 }
 
+const handleBuyClick = () => {
+  console.log("purchased");
+}
+
 const ItemList = ({items})=>{
   return(
     <>
       {items.map(anItem => (
       <StoreItem item = {anItem}>
-          <button> Buy </button>
+          <button  onClick={handleBuyClick}> Buy </button>
           <h3>Children</h3>
        </StoreItem>
       ))}
