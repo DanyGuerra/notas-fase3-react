@@ -17,6 +17,43 @@ Es una variable de class (disponible en toda la clase que usa esto) que necesita
 - Las funciones son super simples y pequeñas pero muy limitadas, trate de usarlas siempre a menos que esté obligado a usar una Clase.
 - Las clases son para componentes más grandes que requieren más lógica. Tienen un estado local (this.state) y métodos de ciclo de vida de componentes.
 
+`Nota:` La unica diferencia entre usar una clase y usar una función es que a la clase pueden asignarle estados y a las funciones no, ademas en el return en una clase es necesario especificar el metodo Render().
+
+`Nota:` Es mejor asignar un componente usando clase aunque un componente no use estados es mejor definirlo con una clase por si en un futuro es necesario asignarle estados.
+
+### Definicion de un componente usando clase y funcion
+
+#### Usando funcion
+
+```javascript
+function Todo(props) {
+  return(
+    <div>{props.task}</div>
+  )
+}
+```
+#### Usando clase
+Definiendo un componente como clase pueden asignarle estados al componente.
+
+```javascript
+import React from 'react'
+
+class Todo extends React.Component {
+
+  state = {
+    done: false,
+    isChecked: false
+  }
+
+  render() {
+    return (
+      <div>{this.props.task}</div>
+    );
+  }
+}
+```
+
+
 ## Eventos en React
 
 Evento en Javascript
@@ -52,3 +89,5 @@ Para hacer este evento en React tenemos que hacer estos cambios:
 En este caso event es un evento sintético de React, en React todos los manejadores de eventos son instancias de SyntheticEvents.
 
 Los eventos sintéticos son una envoltura de los eventos nativos del navegador, por lo que estos eventos cuentan con la misma interfaz de los eventos nativos, como por ejemplo preventDefault() y stopPropagation(), con la ventaja de que todos estos eventos funcionan idénticamente en la mayoría de los navegadores.
+
+
