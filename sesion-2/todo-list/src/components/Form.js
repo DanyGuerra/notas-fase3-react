@@ -22,7 +22,7 @@ class Form extends Component {
           onClick={(e) => {
             e.preventDefault();
             if (this.state.textFieldContent.length > 3) {
-              this.props.onCreateTodo(this.state.textFieldContent);
+              this.props.createTodo(this.state.textFieldContent);
               this.setState({ textFieldContent: "" });
             }
           }}
