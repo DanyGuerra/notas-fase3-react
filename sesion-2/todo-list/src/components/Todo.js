@@ -30,12 +30,13 @@ class Todo extends React.Component {
 
         <button
           onClick={()=>{
-            this.setState({done: !this.state.done
-            })}}
+            // this.setState({done: !this.state.done})
+            this.setState((prevState)=>({done:!prevState.done})) //Usando Arrow function se obtiene el estado previo se puede hacer de estas dos maneras
+          }}
           style={{ height: 15, width: 10 }}
         />
 
-        <input
+        {/* <input
           type="checkbox"
           checked={this.state.isChecked}
           onClick={()=>{
@@ -43,7 +44,7 @@ class Todo extends React.Component {
               isChecked: !this.state.isChecked
             })
           }}
-        />
+        /> */}
 
       </div>
     );

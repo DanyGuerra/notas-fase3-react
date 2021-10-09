@@ -91,3 +91,35 @@ En este caso event es un evento sintético de React, en React todos los manejado
 Los eventos sintéticos son una envoltura de los eventos nativos del navegador, por lo que estos eventos cuentan con la misma interfaz de los eventos nativos, como por ejemplo preventDefault() y stopPropagation(), con la ventaja de que todos estos eventos funcionan idénticamente en la mayoría de los navegadores.
 
 
+## Errores comunes
+`Warning: Each child in a list should have a unique "key" prop.`
+
+Es por el metodo `map()` se soluciona pasandole en key el index del map de la siguiente manera, esto para que react sepa que indece del arreglo es y no tenga que repintar todo.
+
+```javascript
+function TodoList (){
+  return(
+    <div className="list-wrapper">
+      {tasks.map((task,index)=>(
+        <Todo task={task} key={index}/>
+      ))}
+    </div>
+  )
+}
+```
+
+Se puede solucionar de la siguiente manera, usando el mismo contenido del arreglo pero con la desventaja que si se tiene le mismo contenido marcara un error por usar la misma `key`
+
+```javascript
+const tasks = ["Hacer la tarea", "Correr", "Dormir", "Correr"]
+function TodoList (){
+  return(
+    <div className="list-wrapper">
+      {tasks.map((task)=>(
+        <Todo task={task} key={task}/>
+      ))}
+    </div>
+  )
+}
+```
+En este caso la key `Correr` se repitiria en dos elementos por lo que hay que tener cuidado al usar esta solucion.

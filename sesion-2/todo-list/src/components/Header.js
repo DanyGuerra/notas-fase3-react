@@ -1,9 +1,9 @@
 import '../css/Header.css'
 
-function Header() {
+function Header(props) {
   return (
     <div className="card-header">
-      <h1 className="card-header-title header"> Hay 0 tareas a realizar </h1>
+      <h1 className="card-header-title header"> {props.children}</h1>
     </div>
   );
 }

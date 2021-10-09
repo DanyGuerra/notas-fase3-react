@@ -1,10 +1,35 @@
-function Form() {
-  return (
-    <form>
-      <input type="text" className="input" placeholder="Activity"/>
-      <button className="button">Enviar</button>
-    </form>
-  );
+import React , { Component } from "react";
+import "../css/form.css"
+class Form extends Component {
+
+  state = {
+    textFieldContent: ''
+  }
+
+  render(){
+    return (
+      <form>
+        <input
+          type="text"
+          value={this.state.textFieldContent}
+          onChange={(e)=>{
+            this.setState({textFieldContent: e.target.value})
+          }}
+          className="input"
+          placeholder="Activity"/>
+        <button className="button" onClick={(e)=>{
+            e.preventDefault();
+            if(this.state.textFieldContent.length > 3){
+              this.props.onCreateTodo(this.state.textFieldContent)
+              this.setState({textFieldContent:""})
+            }
+        }}
+        >
+          Enviar
+        </button>
+      </form>
+    );
+  }
 }
 
 export default Form;
