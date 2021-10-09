@@ -1,6 +1,5 @@
-import React from 'react'
-import "../css/Todo.css"
-
+import React from "react";
+import "../css/Todo.css";
 
 //Usando funcion
 
@@ -17,21 +16,20 @@ import "../css/Todo.css"
 //Usando clase con la clase podemos usar estados
 
 class Todo extends React.Component {
-
   state = {
     done: false,
-    isChecked: false
-  }
+    isChecked: false,
+  };
 
   render() {
     return (
-      <div className={`list-item ${this.state.done ? 'done' : '' }`}>
+      <div className={`list-item ${this.state.done ? "done" : ""}`}>
         {this.props.task}
 
         <button
-          onClick={()=>{
+          onClick={() => {
             // this.setState({done: !this.state.done})
-            this.setState((prevState)=>({done:!prevState.done})) //Usando Arrow function se obtiene el estado previo se puede hacer de estas dos maneras
+            this.setState((prevState) => ({ done: !prevState.done })); //Usando Arrow function se obtiene el estado previo se puede hacer de estas dos maneras
           }}
           style={{ height: 15, width: 10 }}
         />
@@ -45,10 +43,9 @@ class Todo extends React.Component {
             })
           }}
         /> */}
-
       </div>
     );
   }
 }
 
-export default Todo
+export default Todo;
