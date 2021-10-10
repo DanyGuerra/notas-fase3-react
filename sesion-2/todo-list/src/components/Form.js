@@ -27,7 +27,7 @@ class Form extends Component {
             }
           }}
         >
-          Enviar
+          Agregar
         </button>
       </form>
     );

@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import Header from "./Header";
 import Form from "./Form";
 import TodoList from "./TodoList";
+import "../css/App.css";
 
 class App extends Component {
   state = {
     tasks: [
-      { id: 1, content: "pasear al perro", done: false },
-      { id: 2, content: "correr", done: false },
-      { id: 3, content: "correr", done: false },
+      { id: 1, content: "Lavar los trastes ", done: false },
+      { id: 2, content: "Mandar correo a la division", done: false },
+      { id: 3, content: "Sacar a pasear al perro", done: false },
+      { id: 4, content: "Sacar cita con el Doc", done: false },
+      { id: 5, content: "Contestar encuesta de ingles", done: false },
     ],
   };
 
@@ -36,18 +39,23 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
+        <Header>
+          <div>Total tareas: {this.state.tasks.length}</div>
+          <div>
+            Tareas pendientes:{" "}
+            {this.state.tasks.filter((task) => !task.done).length}
+          </div>
+        </Header>
         <div className="card frame">
-          <Header>
-            {" "}
-            Hay {this.state.tasks.length} tareas ,{" "}
-            {this.state.tasks.filter((task) => !task.done).length} pendientes
-          </Header>
           <Form
             createTodo={(value) => {
               this.createTodo(value);
             }}
-          />
-          <TodoList tasks={this.state.tasks} doTask={(id) => this.doTask(id)} />
+          ></Form>
+          <TodoList
+            tasks={this.state.tasks}
+            doTask={(id) => this.doTask(id)}
+          ></TodoList>
         </div>
       </div>
     );
