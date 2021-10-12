@@ -1,4 +1,5 @@
 import React from "react";
+import Checkmark from "./Checkmark";
 import "../css/Todo.css";
 class Todo extends React.Component {
   render() {
@@ -10,6 +11,7 @@ class Todo extends React.Component {
           onClick={() => this.props.doTask(this.props.task.id)}
         />
         <div className="list-content">{this.props.task.content}</div>
+        <Checkmark checkmark={this.props.task.done}></Checkmark>
       </div>
     );
   }
