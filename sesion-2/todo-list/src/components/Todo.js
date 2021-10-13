@@ -11,6 +11,11 @@ class Todo extends React.Component {
           onClick={() => this.props.doTask(this.props.task.id)}
         />
         <div className="list-content">{this.props.task.content}</div>
+        <div className="btn-delete">
+          <button onClick={() => this.props.deleteTask(this.props.task.id)}>
+            Borrar
+          </button>
+        </div>
         <Checkmark checkmark={this.props.task.done}></Checkmark>
       </div>
     );

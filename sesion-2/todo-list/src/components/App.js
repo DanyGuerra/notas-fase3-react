@@ -36,6 +36,13 @@ class App extends Component {
     this.setState({ tasks: tasksCopy });
   }
 
+  deleteTask(idParameter) {
+    let tasksCopy = [...this.state.tasks].filter(
+      (task) => task.id !== idParameter
+    );
+    this.setState({ tasks: tasksCopy });
+  }
+
   render() {
     return (
       <div className="wrapper">
@@ -55,6 +62,7 @@ class App extends Component {
           <TodoList
             tasks={this.state.tasks}
             doTask={(id) => this.doTask(id)}
+            deleteTask={(id) => this.deleteTask(id)}
           ></TodoList>
         </div>
       </div>

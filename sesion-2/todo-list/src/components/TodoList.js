@@ -5,7 +5,12 @@ function TodoList(props) {
   return (
     <div className="list-wrapper">
       {props.tasks.map((task, index) => (
-        <Todo task={task} key={task.id} doTask={props.doTask} />
+        <Todo
+          task={task}
+          key={task.id}
+          doTask={props.doTask}
+          deleteTask={props.deleteTask}
+        />
       ))}
     </div>
   );
