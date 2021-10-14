@@ -1,13 +1,38 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "../css/form.css";
 
-function Form() {
-  return (
-    <form>
-      <input type="text" className="input" placeholder="Agrega una tarea" />
-      <button className="button">Enviar</button>
-    </form>
-  );
+class Form extends React.Component {
+  state = { value: "" };
+
+  handleChange = (e) => {
+    this.setState({ value: e.target.value });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.addTaskFn(this.state.value);
+    this.setState({ value: "" });
+  };
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          className="input"
+          placeholder="Agrega una tarea"
+          onChange={this.handleChange}
+          value={this.state.value}
+        />
+        <button className="button">Enviar</button>
+      </form>
+    );
+  }
 }
+
+Form.propTypes = {
+  addTaskFn: PropTypes.func.isRequired,
+};
 
 export default Form;
