@@ -7,6 +7,21 @@ import "../css/App.css";
 class App extends React.Component {
   state = { todos: [], showButton: true };
 
+  componentDidMount() {
+    this.setState({
+      todos: [
+        { title: "Sesión 1 (JSX)", done: true },
+        { title: "Sesión 2 (Estado y propiedades)", done: true },
+        { title: "Sesión 3 (Ciclo de vida)", done: true },
+        { title: "Sesión 4 (Hooks)", done: false },
+        { title: "Sesión 5 (Hooks)", done: false },
+        { title: "Sesión 6 (Rutas)", done: false },
+        { title: "Sesión 7 (PWA)", done: false },
+        { title: "Sesión 8 (Material UI)", done: false },
+      ],
+    });
+  }
+
   handleClick = (e) => {
     this.setState({
       todos: [
