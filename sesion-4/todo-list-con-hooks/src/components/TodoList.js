@@ -6,15 +6,18 @@ import "../css/TodoList.css";
 function TodoList(props) {
   return (
     <div className="list-wrapper">
-      {props.tasks.map((e, i) => (
-        <Todo
-          key={i}
-          done={e.done}
-          title={e.title}
-          deleteFn={(e) => props.deleteFn(e, i)}
-          toggleFn={(e) => props.toggleFn(e, i)}
-        />
-      ))}
+      {props.tasks.map(
+        (e, i) =>
+          (!e.done || props.show) && (
+            <Todo
+              key={i}
+              done={e.done}
+              title={e.title}
+              deleteFn={(e) => props.deleteFn(e, i)}
+              toggleFn={(e) => props.toggleFn(e, i)}
+            />
+          )
+      )}
     </div>
   );
 }

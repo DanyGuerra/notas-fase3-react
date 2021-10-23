@@ -9,16 +9,24 @@ function App() {
   const [show, setShow] = React.useState(true);
 
   React.useEffect(() => {
-    setTodos([
-      { title: "Sesión 1 (JSX)", done: true },
-      { title: "Sesión 2 (Estado y propiedades)", done: true },
-      { title: "Sesión 3 (Ciclo de vida)", done: true },
-      { title: "Sesión 4 (Hooks)", done: false },
-      { title: "Sesión 5 (Hooks)", done: false },
-      { title: "Sesión 6 (Rutas)", done: false },
-      { title: "Sesión 7 (PWA)", done: false },
-      { title: "Sesión 8 (Material UI)", done: false },
-    ]);
+    // setTodos([
+    //   { title: "Sesión 1 (JSX)", done: true },
+    //   { title: "Sesión 2 (Estado y propiedades)", done: true },
+    //   { title: "Sesión 3 (Ciclo de vida)", done: true },
+    //   { title: "Sesión 4 (Hooks)", done: false },
+    //   { title: "Sesión 5 (Hooks)", done: false },
+    //   { title: "Sesión 6 (Rutas)", done: false },
+    //   { title: "Sesión 7 (PWA)", done: false },
+    //   { title: "Sesión 8 (Material UI)", done: false },
+    // ]);
+    const URL = "http://localhost:4000/todos";
+    const getData = async () => {
+      const res = await fetch(URL);
+      const data = await res.json();
+      setTodos(data);
+    };
+
+    getData();
   }, []);
 
   const handleClickDelete = (e, index) => {
@@ -31,6 +39,18 @@ function App() {
     const t = [...todos];
     todos[index].done = !todos[index].done;
     setTodos(t);
+
+    const el = todos.find((e) => e.id === index);
+
+    try {
+      fetch(`http://localhost:4000/todos/1`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ done: el }),
+      });
+    } catch {}
   };
 
   const addTask = (title) => {
@@ -44,14 +64,15 @@ function App() {
     setTodos(todos.concat([{ title, done: false }]));
   };
 
-  const filtered = todos.filter((e) => !e.done || e.done === show);
+  // const filtered = todos.filter((e) => !e.done || e.done === show);
 
   return (
     <div className="wrapper">
       <div className="card frame">
-        <Header counter={filtered.length} show={show} toggleDone={setShow} />
+        <Header counter={todos.length} show={show} toggleDone={setShow} />
         <TodoList
-          tasks={filtered}
+          tasks={todos}
+          show={show}
           toggleFn={handleClickToggleDone}
           deleteFn={handleClickDelete}
         />
