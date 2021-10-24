@@ -36,21 +36,26 @@ function App() {
   };
 
   const handleClickToggleDone = (e, index) => {
-    const t = [...todos];
-    todos[index].done = !todos[index].done;
-    setTodos(t);
-
     const el = todos.find((e) => e.id === index);
 
+    const value = !el.done;
+    console.log(value);
+
     try {
-      fetch(`http://localhost:4000/todos/1`, {
+      fetch(`http://localhost:4000/todos/${el.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ done: el }),
+        body: JSON.stringify({ done: value }),
       });
-    } catch {}
+
+      const t = [...todos];
+      todos[index].done = !todos[index].done;
+      setTodos(t);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const addTask = (title) => {

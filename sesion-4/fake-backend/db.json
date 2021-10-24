@@ -1,44 +1,44 @@
 {
   "todos": [
     {
-      "id": 1,
+      "id": 0,
       "title": "Sesión 1 (JSX)",
-      "done": false
+      "done": true
     },
     {
-      "id": 2,
+      "id": 1,
       "title": "Sesión 2 (Estado y propiedades)",
       "done": true
     },
     {
-      "id": 3,
+      "id": 2,
       "title": "Sesión 3 (Ciclo de vida)",
       "done": true
     },
     {
-      "id": 4,
+      "id": 3,
       "title": "Sesión 4 (Hooks)",
-      "done": false
+      "done": true
+    },
+    {
+      "id": 4,
+      "title": "Sesión 5 (Hooks)",
+      "done": true
     },
     {
       "id": 5,
-      "title": "Sesión 5 (Hooks)",
-      "done": false
+      "title": "Sesión 6 (Rutas)",
+      "done": true
     },
     {
       "id": 6,
-      "title": "Sesión 6 (Rutas)",
-      "done": false
+      "title": "Sesión 7 (PWA)",
+      "done": true
     },
     {
       "id": 7,
-      "title": "Sesión 7 (PWA)",
-      "done": false
-    },
-    {
-      "id": 8,
       "title": "Sesión 8 (Material UI)",
-      "done": false
+      "done": true
     }
   ]
 }
