@@ -1,12 +1,14 @@
 import React from "react";
-import Header from "./Header";
-import Form from "./Form";
-import TodoList from "./TodoList";
 import "../css/App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./Home";
+import TodoDetails from "./TodoDetails";
+import NotFound from "./NotFound";
 
-function App() {
+function App(props) {
   const [todos, setTodos] = React.useState([]);
   const [show, setShow] = React.useState(true);
+  const URL = "http://localhost:4000/todos";
 
   React.useEffect(() => {
     // setTodos([
@@ -19,7 +21,6 @@ function App() {
     //   { title: "Sesión 7 (PWA)", done: false },
     //   { title: "Sesión 8 (Material UI)", done: false },
     // ]);
-    const URL = "http://localhost:4000/todos";
     const getData = async () => {
       const res = await fetch(URL);
       const data = await res.json();
@@ -58,7 +59,17 @@ function App() {
     }
   };
 
-  const addTask = (title) => {
+  const goToBackend = (config, data) => {
+    return fetch(config.url, {
+      method: config.method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  };
+
+  const addTask = async (title) => {
     const exists = todos.find((e) => title === e.title);
 
     if (exists) {
@@ -66,23 +77,59 @@ function App() {
       return;
     }
 
-    setTodos(todos.concat([{ title, done: false }]));
+    // Cambio en el servidor
+    const config = {
+      url: "http://localhost:4000/todos",
+      method: "POST",
+    };
+
+    const data = {
+      title: title,
+      done: false,
+    };
+
+    try {
+      const response = await goToBackend(config, data);
+      if (!response.ok) throw new Error("Response not ok");
+
+      const todo = await response.json();
+
+      // UI
+      setTodos(todos.concat([todo]));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // const filtered = todos.filter((e) => !e.done || e.done === show);
 
   return (
     <div className="wrapper">
-      <div className="card frame">
-        <Header counter={todos.length} show={show} toggleDone={setShow} />
-        <TodoList
-          tasks={todos}
-          show={show}
-          toggleFn={handleClickToggleDone}
-          deleteFn={handleClickDelete}
-        />
-        <Form addTaskFn={addTask} />
-      </div>
+      <Router>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Home
+                {...props}
+                show={show}
+                setShow={setShow}
+                handleClickToggleDone={handleClickToggleDone}
+                handleClickDelete={handleClickDelete}
+                addTask={addTask}
+                todos={todos}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/details/:id"
+            render={(props) => <TodoDetails {...props} url={URL} />}
+          />
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </Router>
     </div>
   );
 }

@@ -10,6 +10,7 @@ function TodoList(props) {
         (e, i) =>
           (!e.done || props.show) && (
             <Todo
+              id={e.id}
               key={i}
               done={e.done}
               title={e.title}
