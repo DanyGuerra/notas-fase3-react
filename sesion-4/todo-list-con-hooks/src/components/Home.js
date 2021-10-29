@@ -23,7 +23,6 @@ const Home = (props) => {
 };
 
 Home.propTypes = {
-  filtered: PropTypes.array.isRequired,
   show: PropTypes.bool.isRequired,
   setShow: PropTypes.func.isRequired,
   handleClickToggleDone: PropTypes.func.isRequired,

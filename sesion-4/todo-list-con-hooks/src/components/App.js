@@ -40,7 +40,7 @@ function App(props) {
     const el = todos.find((e) => e.id === index);
 
     const value = !el.done;
-    console.log(value);
+    // console.log(value);
 
     try {
       fetch(`http://localhost:4000/todos/${el.id}`, {
