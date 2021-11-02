@@ -6,6 +6,7 @@ import TodoDetails from "./TodoDetails";
 import NotFound from "./NotFound";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
+import Header from "./Header";
 
 function App(props) {
   const [todos, setTodos] = React.useState([]);
@@ -106,31 +107,34 @@ function App(props) {
   // const filtered = todos.filter((e) => !e.done || e.done === show);
 
   return (
-    <Container>
+    <>
       <Router>
-        <Grid container alignItems="center" justify="center" className="main">
-          <Grid item md={4} sm={6} xs={12} className="wrapper">
-            <Switch>
-              <Route path="/" exact>
-                <Home
-                  todos={todos}
-                  show={show}
-                  setShow={setShow}
-                  handleClickToggleDone={handleClickToggleDone}
-                  handleClickDelete={handleClickDelete}
-                  addTask={addTask}
+        <Header></Header>
+        <Container>
+          <Grid container alignItems="center" justify="center" className="main">
+            <Grid item md={4} sm={6} xs={12} className="wrapper">
+              <Switch>
+                <Route path="/" exact>
+                  <Home
+                    todos={todos}
+                    show={show}
+                    setShow={setShow}
+                    handleClickToggleDone={handleClickToggleDone}
+                    handleClickDelete={handleClickDelete}
+                    addTask={addTask}
+                  />
+                </Route>
+                <Route
+                  path="/details/:id"
+                  render={(props) => <TodoDetails {...props} url={URL} />}
                 />
-              </Route>
-              <Route
-                path="/details/:id"
-                render={(props) => <TodoDetails {...props} url={URL} />}
-              />
-              <Route component={NotFound} />
-            </Switch>
+                <Route component={NotFound} />
+              </Switch>
+            </Grid>
           </Grid>
-        </Grid>
+        </Container>
       </Router>
-    </Container>
+    </>
   );
 }
 

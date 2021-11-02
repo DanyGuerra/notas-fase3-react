@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import Todo from "./Todo";
 import "../css/TodoList.css";
-
+import List from "@mui/material/List";
 function TodoList(props) {
   return (
-    <div className="list-wrapper">
+    <List sx={{ width: "100%", bgcolor: "background.paper" }}>
       {props.tasks.map(
         (e, i) =>
           (!e.done || props.show) && (
@@ -19,7 +19,7 @@ function TodoList(props) {
             />
           )
       )}
-    </div>
+    </List>
   );
 }
 

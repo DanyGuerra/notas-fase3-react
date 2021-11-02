@@ -1,17 +1,17 @@
 import Form from "./Form";
-import Header from "./Header";
 import TodoList from "./TodoList";
 import PropTypes from "prop-types";
+import ShowHide from "./ShowHide";
 
 const Home = (props) => {
   return (
-    // <div className="card frame">
     <>
-      <Header
-        counter={props.todos.length}
-        show={props.show}
-        toggleDone={props.setShow}
-      />
+      <div className="card-header">
+        <h1 className="card-header-title header">
+          Hay {props.todos.length} tareas
+        </h1>
+        <ShowHide show={props.show} toggleDone={props.setShow} />
+      </div>
       <TodoList
         tasks={props.todos}
         show={props.show}
@@ -20,7 +20,6 @@ const Home = (props) => {
       />
       <Form addTaskFn={props.addTask} />
     </>
-    //</div>
   );
 };
 
