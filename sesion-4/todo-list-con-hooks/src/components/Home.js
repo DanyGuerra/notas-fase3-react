@@ -5,7 +5,8 @@ import PropTypes from "prop-types";
 
 const Home = (props) => {
   return (
-    <div className="card frame">
+    // <div className="card frame">
+    <>
       <Header
         counter={props.todos.length}
         show={props.show}
@@ -18,7 +19,8 @@ const Home = (props) => {
         deleteFn={props.handleClickDelete}
       />
       <Form addTaskFn={props.addTask} />
-    </div>
+    </>
+    //</div>
   );
 };
 

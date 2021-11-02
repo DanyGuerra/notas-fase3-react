@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../css/ShowHide.css";
+import { Switch } from "@mui/material";
 
 function ShowHide(props) {
   return (
-    <div
-      className="icon-wrapper"
+    <Switch
+      // defaultChecked
       onClick={(e) => props.toggleDone(!props.show)}
-    >
-      <i className={props.show ? "gg-block" : "gg-unblock"} />
-    </div>
+      inputProps={{ "aria-label": "controlled" }}
+    />
   );
 }
 

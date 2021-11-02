@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import TodoDetails from "./TodoDetails";
 import NotFound from "./NotFound";
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
 
 function App(props) {
   const [todos, setTodos] = React.useState([]);
@@ -104,33 +106,31 @@ function App(props) {
   // const filtered = todos.filter((e) => !e.done || e.done === show);
 
   return (
-    <div className="wrapper">
+    <Container>
       <Router>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <Home
-                {...props}
-                show={show}
-                setShow={setShow}
-                handleClickToggleDone={handleClickToggleDone}
-                handleClickDelete={handleClickDelete}
-                addTask={addTask}
-                todos={todos}
+        <Grid container alignItems="center" justify="center" className="main">
+          <Grid item md={4} sm={6} xs={12} className="wrapper">
+            <Switch>
+              <Route path="/" exact>
+                <Home
+                  todos={todos}
+                  show={show}
+                  setShow={setShow}
+                  handleClickToggleDone={handleClickToggleDone}
+                  handleClickDelete={handleClickDelete}
+                  addTask={addTask}
+                />
+              </Route>
+              <Route
+                path="/details/:id"
+                render={(props) => <TodoDetails {...props} url={URL} />}
               />
-            )}
-          />
-          <Route
-            exact
-            path="/details/:id"
-            render={(props) => <TodoDetails {...props} url={URL} />}
-          />
-          <Route path="*" component={NotFound} />
-        </Switch>
+              <Route component={NotFound} />
+            </Switch>
+          </Grid>
+        </Grid>
       </Router>
-    </div>
+    </Container>
   );
 }
 
